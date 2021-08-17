@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.leanback.widget.BaseCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="@dimen/card_width"
+        android:layout_height="@dimen/card_height"
+        android:duplicateParentState="false"
+        android:drawablePadding="4dp"
+        android:paddingRight="6dp"
+        android:gravity="center_vertical"
+        android:singleLine="false"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        tools:ignore="RtlHardcoded,RtlSymmetry" />
+</androidx.leanback.widget.BaseCardView>
+<!--If liking transparent backgroud can using ListRowCardView instead.-->
