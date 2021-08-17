@@ -6,6 +6,7 @@
     <fragment
         android:id="@+id/browse_fragment"
         android:name="com.github.crazyboyfeng.justTvLauncher.browse.BrowseFragment"
+        android:title="@string/app_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </androidx.leanback.widget.BrowseFrameLayout>
