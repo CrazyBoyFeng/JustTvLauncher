@@ -28,7 +28,8 @@ class BrowseFragment : BrowseSupportFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         headersState = HEADERS_DISABLED
-        viewModel = ViewModelProvider(this).get(BrowseViewModel::class.java)
+        val factory = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        viewModel = ViewModelProvider(this, factory).get(BrowseViewModel::class.java)
         viewModel.browseContent.observe(this, {
             adapter = BrowseAdapter(it!!)
         })
