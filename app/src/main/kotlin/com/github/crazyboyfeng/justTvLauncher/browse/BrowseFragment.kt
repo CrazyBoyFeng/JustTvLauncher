@@ -11,14 +11,16 @@ import android.os.Looper
 import androidx.leanback.app.BrowseSupportFragment
 import androidx.lifecycle.ViewModelProvider
 import com.github.crazyboyfeng.justTvLauncher.model.Shortcut
+import java.text.DateFormat
 import java.util.Date
 
 
 class BrowseFragment : BrowseSupportFragment() {
     private val handler = Handler(Looper.getMainLooper())
     private val tick = Runnable { startTick() }
+    private val dateFormat= DateFormat.getTimeInstance()
     private fun startTick() {
-        title = Date().toString()
+        title = dateFormat.format(Date())
         handler.postDelayed(tick, 1000)
     }
 
