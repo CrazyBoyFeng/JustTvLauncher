@@ -16,11 +16,9 @@ android {
         targetSdk = 30
         versionCode = 20210818
         versionName = "2021.8.18"
-
 //        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
     }
     buildFeatures {
-        dataBinding = true
         viewBinding = true
     }
     buildTypes {
