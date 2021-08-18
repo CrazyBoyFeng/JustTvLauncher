@@ -1,6 +1,7 @@
 package com.github.crazyboyfeng.justTvLauncher.browse
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.github.crazyboyfeng.justTvLauncher.model.Shortcut
@@ -33,11 +34,14 @@ class BrowseViewModel(application: Application) : AndroidViewModel(application) 
                 shortcutGroupByCategory[it.category!!] = shortcutGroup
             }
         }
-        val shortcutGroupList = shortcutGroupByCategory.values.sortedByDescending { it.openCount }
+        val shortcutGroupList = shortcutGroupByCategory.values.sortedByDescending {
+            Log.v(TAG,"${it.category}: ${it.openCount}")
+            it.openCount
+        }
         browseContent.postValue(shortcutGroupList)
     }
-
     fun incrementOpenCount(shortcut: Shortcut) {
+        Log.v(TAG,"${shortcut.id}: ${shortcut.openCount}+1")
         shortcut.openCount++
         shortcutRepository.updateOpenCount(shortcut)
         loadShortcutGroupList()
@@ -46,5 +50,7 @@ class BrowseViewModel(application: Application) : AndroidViewModel(application) 
         shortcutRepository.deleteById(packageName)
         loadShortcutGroupList()
     }
-
+    companion object {
+        private const val TAG = "BrowseViewModel"
+    }
 }
