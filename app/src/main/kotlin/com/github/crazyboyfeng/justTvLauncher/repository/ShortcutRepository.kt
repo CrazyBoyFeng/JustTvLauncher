@@ -13,14 +13,14 @@ class ShortcutRepository(private val context: Context) {
     private val categoryData = CategoryRepository.getInstance(context)
     private val openCountData = OpenCountRepository.getInstance(context)
     fun load(): Set<Shortcut> {
-        val all=load(Intent.CATEGORY_LAUNCHER)
+        val all = load(Intent.CATEGORY_LAUNCHER)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             all.addAll(load(Intent.CATEGORY_LEANBACK_LAUNCHER))
         }
         return all
     }
 
-    private fun load(category:String): MutableSet<Shortcut> {
+    private fun load(category: String): MutableSet<Shortcut> {
         val all = mutableSetOf<Shortcut>()
         val packageManager = context.packageManager
         val intent = Intent(Intent.ACTION_MAIN)

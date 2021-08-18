@@ -7,6 +7,7 @@ import com.github.crazyboyfeng.kotlin.SingletonHolder
 
 class CategoryRepository private constructor(private val context: Context) {
     companion object : SingletonHolder<CategoryRepository, Context>(::CategoryRepository)
+
     private val sharedPreferences = context.getSharedPreferences("category", 0)
     private val editor = sharedPreferences.edit()
     fun load(packageName: String): String {
@@ -17,13 +18,16 @@ class CategoryRepository private constructor(private val context: Context) {
             context.getString(R.string.title_apps)
         }
     }
+
     fun query(id: String): String? {
         return sharedPreferences.getString(id, null)
     }
-    fun update(id: String, category:String) {
+
+    fun update(id: String, category: String) {
         editor.putString(id, category).apply()
     }
-    fun delete(id:String) {
+
+    fun delete(id: String) {
         editor.remove(id).apply()
     }
 }

@@ -18,7 +18,7 @@ import java.util.Date
 class BrowseFragment : BrowseSupportFragment() {
     private val handler = Handler(Looper.getMainLooper())
     private val tick = Runnable { startTick() }
-    private val dateFormat= DateFormat.getTimeInstance()
+    private val dateFormat = DateFormat.getTimeInstance()
     private fun startTick() {
         title = dateFormat.format(Date())
         handler.postDelayed(tick, 1000)
@@ -28,7 +28,8 @@ class BrowseFragment : BrowseSupportFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         headersState = HEADERS_DISABLED
-        val factory = ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
+        val factory =
+            ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
         viewModel = ViewModelProvider(this, factory).get(BrowseViewModel::class.java)
         viewModel.browseContent.observe(this, {
             adapter = BrowseAdapter(it!!)
@@ -74,7 +75,7 @@ class BrowseFragment : BrowseSupportFragment() {
             if (Intent.ACTION_PACKAGE_REMOVED == intent.action) {
                 val packageName = intent.data!!.schemeSpecificPart
                 viewModel.removePackage(packageName)
-            }else{
+            } else {
                 viewModel.loadShortcutGroupList()
             }
         }
