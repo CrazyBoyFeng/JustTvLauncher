@@ -5,11 +5,11 @@ import android.graphics.drawable.Drawable
 class Shortcut(
     val id: String,
     val title: String,
-    val icon: Drawable,
+    val icon: Drawable?,
     val banner: Drawable?
 ) {
-    var category: String? = null
-    var openCount = 0
+    lateinit var category: String
+    var openCount: Int = 0
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

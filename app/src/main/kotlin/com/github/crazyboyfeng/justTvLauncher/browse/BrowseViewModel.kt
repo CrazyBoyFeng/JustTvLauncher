@@ -27,7 +27,7 @@ class BrowseViewModel(application: Application) : AndroidViewModel(application) 
     fun loadShortcutGroupList() {
         val shortcutGroupByCategory = HashMap<String, ShortcutGroup>()
         shortcutRepository.load().forEach {
-            val category = it.category!!
+            val category = it.category
             if (shortcutGroupByCategory.containsKey(category)) {
                 shortcutGroupByCategory[category]!!.add(it)
             } else {

@@ -22,14 +22,14 @@ class ShortcutCardPresenter : Presenter() {
     override fun onBindViewHolder(viewHolder: ViewHolder, item: Any?) {
         val shortcut = item as Shortcut
         val binding = PresenterShortcutCardBinding.bind(viewHolder.view)
-        if (null == shortcut.banner) {
-            shortcut.icon.setBounds(0, 0, height, height)
-            binding.content.setCompoundDrawables(shortcut.icon, null, null, null)
-            binding.content.text = shortcut.title
-        } else {
+        if (shortcut.banner != null) {
             shortcut.banner.setBounds(0, 0, width, height)
             binding.content.setCompoundDrawables(shortcut.banner, null, null, null)
             binding.root.contentDescription = shortcut.title
+        } else if (shortcut.icon != null) {
+            shortcut.icon.setBounds(0, 0, height, height)
+            binding.content.setCompoundDrawables(shortcut.icon, null, null, null)
+            binding.content.text = shortcut.title
         }
     }
 

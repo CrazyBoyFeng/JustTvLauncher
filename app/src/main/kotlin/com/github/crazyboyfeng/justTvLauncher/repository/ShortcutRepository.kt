@@ -39,10 +39,7 @@ class ShortcutRepository(private val context: Context) {
                 null
             }
             val shortcut = Shortcut(packageName, label, icon, banner)
-            shortcut.category = categoryData.query(shortcut.id)
-            if (null == shortcut.category) {
-                shortcut.category = categoryData.load(packageName)
-            }
+            shortcut.category = categoryData.query(shortcut.id) ?: categoryData.load(packageName)
             shortcut.openCount = openCountData.query(shortcut.id)
             all.add(shortcut)
         }
