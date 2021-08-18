@@ -32,9 +32,13 @@ class ShortcutRepository(private val context: Context) {
                 continue
             }
             val label = it.activityInfo.loadLabel(packageManager).toString()
-            val icon = it.activityInfo.loadIcon(packageManager)
             val banner = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
                 it.activityInfo.loadBanner(packageManager)
+            } else {
+                null
+            }
+            val icon = if (banner == null) {
+                it.activityInfo.loadIcon(packageManager)
             } else {
                 null
             }
