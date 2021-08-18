@@ -6,7 +6,7 @@ plugins {
 android {
     /**
      * Personal opinion:
-     * compleSdk doesn't make sense,
+     * compileSdk doesn't make sense,
      * just generally be consistent with targetSdk.
      */
     compileSdk = 30
