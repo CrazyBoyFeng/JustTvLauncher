@@ -40,7 +40,7 @@ class BrowseViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun incrementOpenCount(shortcut: Shortcut) {
-        Log.v(TAG, "${shortcut.id}: ${shortcut.openCount}+1")
+        Log.v(TAG, "${shortcut.id}: ${shortcut.openCount} + 1")
         shortcut.openCount++
         shortcutRepository.updateOpenCount(shortcut)
         loadShortcutGroupList()
