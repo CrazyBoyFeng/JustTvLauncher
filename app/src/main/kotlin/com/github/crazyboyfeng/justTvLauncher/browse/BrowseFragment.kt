@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.leanback.app.BrowseSupportFragment
+import androidx.leanback.widget.ListRowPresenter
 import androidx.lifecycle.ViewModelProvider
 import com.github.crazyboyfeng.justTvLauncher.model.Shortcut
 import java.text.DateFormat
@@ -39,6 +40,7 @@ class BrowseFragment : BrowseSupportFragment() {
                 is Shortcut -> {
                     launch(item.id)
                     viewModel.incrementOpenCount(item)
+                    select(item)
                 }
             }
         }
@@ -54,6 +56,14 @@ class BrowseFragment : BrowseSupportFragment() {
             intent = packageManager.getLaunchIntentForPackage(packageName)
         }
         startActivity(intent)
+    }
+
+
+    private fun select(shortcut: Shortcut) = handler.post {
+        val position = viewModel.findPosition(shortcut)
+        val task = ListRowPresenter.SelectItemViewHolderTask(position.second)
+        task.isSmoothScroll = false
+        rowsSupportFragment.setSelectedPosition(position.first, false, task)
     }
 
     override fun onResume() {

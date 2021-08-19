@@ -46,6 +46,14 @@ class BrowseViewModel(application: Application) : AndroidViewModel(application) 
         loadShortcutGroupList()
     }
 
+    fun findPosition(shortcut: Shortcut): Pair<Int, Int> {
+        val shortcutGroupList = browseContent.value!!
+        val x = shortcutGroupList.indexOfFirst { it.category == shortcut.category }
+        val y = shortcutGroupList[x].shortcutList.indexOf(shortcut)
+        Log.v(TAG, "${shortcut.id}: ($x, $y)")
+        return Pair(x, y)
+    }
+
     fun removePackage(packageName: String) {
         shortcutRepository.deleteById(packageName)
         loadShortcutGroupList()
