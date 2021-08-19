@@ -37,19 +37,23 @@ class BrowseFragment : BrowseSupportFragment() {
         setOnItemViewClickedListener { _, item, _, _ ->
             when (item) {
                 is Shortcut -> {
-                    var intent: Intent? = null
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        intent =
-                            requireContext().packageManager.getLeanbackLaunchIntentForPackage(item.id)
-                    }
-                    if (intent == null) {
-                        intent = requireContext().packageManager.getLaunchIntentForPackage(item.id)
-                    }
-                    startActivity(intent)
+                    launch(item.id)
                     viewModel.incrementOpenCount(item)
                 }
             }
         }
+    }
+
+    private fun launch(packageName: String) {
+        val packageManager = requireContext().packageManager
+        var intent: Intent? = null
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            intent = packageManager.getLeanbackLaunchIntentForPackage(packageName)
+        }
+        if (intent == null) {
+            intent = packageManager.getLaunchIntentForPackage(packageName)
+        }
+        startActivity(intent)
     }
 
     override fun onResume() {
