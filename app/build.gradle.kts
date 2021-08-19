@@ -14,8 +14,8 @@ android {
         applicationId = "com.github.crazyboyfeng.justTvLauncher"
         minSdk = 17
         targetSdk = 30
-        versionCode = 20210818
-        versionName = "2021.8.18"
+        versionCode = 20210819
+        versionName = "2021.8.19"
 //        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
     }
     buildFeatures {
