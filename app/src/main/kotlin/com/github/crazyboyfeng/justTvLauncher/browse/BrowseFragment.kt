@@ -100,6 +100,6 @@ class BrowseFragment : BrowseSupportFragment() {
     }
 
     companion object {
-        const val SCHEME_PACKAGE = "package"
+        private const val SCHEME_PACKAGE = "package"
     }
 }
