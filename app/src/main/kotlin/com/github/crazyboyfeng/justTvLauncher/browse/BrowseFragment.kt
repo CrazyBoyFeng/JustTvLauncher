@@ -13,18 +13,12 @@ import androidx.leanback.widget.ListRowPresenter
 import androidx.lifecycle.ViewModelProvider
 import com.github.crazyboyfeng.justTvLauncher.model.Shortcut
 import java.text.DateFormat
-import java.util.Date
+import java.util.*
 
 
 class BrowseFragment : BrowseSupportFragment() {
     private val handler = Handler(Looper.getMainLooper())
-    private val tick = Runnable { startTick() }
     private val dateFormat = DateFormat.getTimeInstance()
-    private fun startTick() {
-        title = dateFormat.format(Date())
-        handler.postDelayed(tick, 1000)
-    }
-
     private lateinit var viewModel: BrowseViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,10 +34,14 @@ class BrowseFragment : BrowseSupportFragment() {
                 is Shortcut -> {
                     launch(item.id)
                     viewModel.incrementOpenCount(item)
-                    select(item)
+                    onSelect(item)
                 }
             }
         }
+    }
+
+    private fun onTick() = handler.post {
+        title = dateFormat.format(Date())
     }
 
     private fun launch(packageName: String) {
@@ -59,23 +57,37 @@ class BrowseFragment : BrowseSupportFragment() {
     }
 
 
-    private fun select(shortcut: Shortcut) = handler.post {
+    private fun onSelect(shortcut: Shortcut) = handler.post {
         val position = viewModel.findPosition(shortcut)
         val task = ListRowPresenter.SelectItemViewHolderTask(position.second)
         task.isSmoothScroll = false
         rowsSupportFragment.setSelectedPosition(position.first, false, task)
     }
 
-    override fun onResume() {
-        super.onResume()
-        startTick()
-        packageChangedReceiver.register(requireContext())
+    override fun onStart() {
+        super.onStart()
+        val context = requireContext()
+        context.registerReceiver(timeTickReceiver, timeTickReceiver.getIntentFilter())
+        context.registerReceiver(packageChangedReceiver, packageChangedReceiver.getIntentFilter())
     }
 
-    override fun onPause() {
-        super.onPause()
-        handler.removeCallbacks(tick)
-        packageChangedReceiver.unregister(requireContext())
+    override fun onStop() {
+        super.onStop()
+        val context = requireContext()
+        context.unregisterReceiver(timeTickReceiver)
+        context.unregisterReceiver(packageChangedReceiver)
+    }
+
+    private val timeTickReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent) {
+            if (Intent.ACTION_TIME_TICK == intent.action) {
+                onTick()
+            }
+        }
+
+        fun getIntentFilter(): IntentFilter {
+            return IntentFilter(Intent.ACTION_TIME_TICK)
+        }
     }
 
     private val packageChangedReceiver = object : BroadcastReceiver() {
@@ -94,18 +106,14 @@ class BrowseFragment : BrowseSupportFragment() {
             }
         }
 
-        fun register(context: Context) {
+        fun getIntentFilter(): IntentFilter {
             val intentFilter = IntentFilter()
             intentFilter.addAction(Intent.ACTION_PACKAGE_ADDED)
             intentFilter.addAction(Intent.ACTION_PACKAGE_REMOVED)
             intentFilter.addAction(Intent.ACTION_PACKAGE_CHANGED)
             intentFilter.addAction(Intent.ACTION_PACKAGE_REPLACED)
             intentFilter.addDataScheme(SCHEME_PACKAGE)
-            context.registerReceiver(this, intentFilter)
-        }
-
-        fun unregister(context: Context) {
-            context.unregisterReceiver(this)
+            return intentFilter
         }
     }
 
