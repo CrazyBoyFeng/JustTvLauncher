@@ -10,7 +10,7 @@ class ShortcutGroup(val category: String, val shortcutList: MutableList<Shortcut
         shortcutList.add(index, element)
     }
 
-    private fun findIndex(oc: Int, leftIndex: Int, rightIndex: Int): Int {
+    private tailrec fun findIndex(oc: Int, leftIndex: Int, rightIndex: Int): Int {
         return when {
             oc > shortcutList[leftIndex].openCount -> {
 //                Log.d(TAG,"$oc>list[left=$leftIndex]=${shortcutList[leftIndex].openCount}")
