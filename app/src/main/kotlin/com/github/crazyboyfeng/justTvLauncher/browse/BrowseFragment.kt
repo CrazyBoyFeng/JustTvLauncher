@@ -34,13 +34,13 @@ class BrowseFragment : BrowseSupportFragment() {
                 is Shortcut -> {
                     launch(item.id)
                     viewModel.incrementOpenCount(item)
-                    onSelect(item)
+                    setSelect(item)
                 }
             }
         }
     }
 
-    private fun onTick() = handler.post {
+    private fun setTick() = handler.post {
         title = dateFormat.format(Date())
     }
 
@@ -57,7 +57,7 @@ class BrowseFragment : BrowseSupportFragment() {
     }
 
 
-    private fun onSelect(shortcut: Shortcut) = handler.post {
+    private fun setSelect(shortcut: Shortcut) = handler.post {
         val position = viewModel.findPosition(shortcut)
         val task = ListRowPresenter.SelectItemViewHolderTask(position.second)
         task.isSmoothScroll = false
@@ -81,7 +81,7 @@ class BrowseFragment : BrowseSupportFragment() {
     private val timeTickReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent) {
             if (Intent.ACTION_TIME_TICK == intent.action) {
-                onTick()
+                setTick()
             }
         }
 
