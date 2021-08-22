@@ -12,11 +12,11 @@ class ShortcutCardPresenter : Presenter() {
     private var height = 180
     override fun onCreateViewHolder(parent: ViewGroup): ViewHolder {
         val context = parent.context
-        val binding =
-            PresenterShortcutCardBinding.inflate(LayoutInflater.from(context), parent, false)
         width = context.resources.getDimension(R.dimen.card_width).toInt()
         height = context.resources.getDimension(R.dimen.card_height).toInt()
-        return ViewHolder(binding.root)
+        val layoutInflater = LayoutInflater.from(context)
+        val cardView = layoutInflater.inflate(R.layout.presenter_shortcut_card, parent, false)
+        return ViewHolder(cardView)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, item: Any?) {
