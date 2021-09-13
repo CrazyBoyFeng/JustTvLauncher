@@ -1,11 +1,11 @@
-package com.github.crazyboyfeng.justTvLauncher.browse
+package crazyboyfeng.justTvLauncher.browse
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.leanback.widget.Presenter
-import com.github.crazyboyfeng.justTvLauncher.R
-import com.github.crazyboyfeng.justTvLauncher.databinding.PresenterShortcutCardBinding
-import com.github.crazyboyfeng.justTvLauncher.model.Shortcut
+import crazyboyfeng.justTvLauncher.R
+import crazyboyfeng.justTvLauncher.databinding.PresenterShortcutCardBinding
+import crazyboyfeng.justTvLauncher.model.Shortcut
 
 class ShortcutCardPresenter : Presenter() {
     private var width = 320

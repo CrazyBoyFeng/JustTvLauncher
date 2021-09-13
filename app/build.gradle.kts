@@ -11,7 +11,7 @@ android {
      */
     compileSdk = 30
     defaultConfig {
-        applicationId = "com.github.crazyboyfeng.justTvLauncher"
+        applicationId = "crazyboyfeng.justTvLauncher"
         minSdk = 17
         targetSdk = 30
         versionCode = 20210819

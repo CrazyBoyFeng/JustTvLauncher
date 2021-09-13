@@ -1,4 +1,4 @@
-package com.github.crazyboyfeng.justTvLauncher
+package crazyboyfeng.justTvLauncher
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity

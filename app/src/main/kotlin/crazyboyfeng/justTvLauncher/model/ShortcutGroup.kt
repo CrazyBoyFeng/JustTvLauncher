@@ -1,4 +1,4 @@
-package com.github.crazyboyfeng.justTvLauncher.model
+package crazyboyfeng.justTvLauncher.model
 
 class ShortcutGroup(val category: String, val shortcutList: MutableList<Shortcut>) {
     var openCount = shortcutList.sumOf { it.openCount }

@@ -1,4 +1,4 @@
-package com.github.crazyboyfeng.justTvLauncher.model
+package crazyboyfeng.justTvLauncher.model
 
 import android.graphics.drawable.Drawable
 

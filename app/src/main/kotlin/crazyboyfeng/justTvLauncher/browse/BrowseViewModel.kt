@@ -1,12 +1,12 @@
-package com.github.crazyboyfeng.justTvLauncher.browse
+package crazyboyfeng.justTvLauncher.browse
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.github.crazyboyfeng.justTvLauncher.model.Shortcut
-import com.github.crazyboyfeng.justTvLauncher.model.ShortcutGroup
-import com.github.crazyboyfeng.justTvLauncher.repository.ShortcutRepository
+import crazyboyfeng.justTvLauncher.model.Shortcut
+import crazyboyfeng.justTvLauncher.model.ShortcutGroup
+import crazyboyfeng.justTvLauncher.repository.ShortcutRepository
 
 /**
  * The lifecycle of this view-model is consistent with the application.

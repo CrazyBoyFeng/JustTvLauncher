@@ -1,9 +1,9 @@
-package com.github.crazyboyfeng.justTvLauncher.repository
+package crazyboyfeng.justTvLauncher.repository
 
 import android.content.Context
 import android.content.pm.ApplicationInfo
-import com.github.crazyboyfeng.justTvLauncher.R
-import com.github.crazyboyfeng.kotlin.SingletonHolder
+import crazyboyfeng.justTvLauncher.R
+import crazyboyfeng.kotlin.SingletonHolder
 
 class CategoryRepository private constructor(private val context: Context) {
     companion object : SingletonHolder<CategoryRepository, Context>(::CategoryRepository)

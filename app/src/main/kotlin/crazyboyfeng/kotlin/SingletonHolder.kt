@@ -1,4 +1,4 @@
-package com.github.crazyboyfeng.kotlin
+package crazyboyfeng.kotlin
 
 open class SingletonHolder<out T, in A>(creator: (A) -> T) {
 

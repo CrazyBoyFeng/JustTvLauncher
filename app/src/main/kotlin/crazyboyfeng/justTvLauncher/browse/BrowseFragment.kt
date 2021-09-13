@@ -1,4 +1,4 @@
-package com.github.crazyboyfeng.justTvLauncher.browse
+package crazyboyfeng.justTvLauncher.browse
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -11,7 +11,7 @@ import android.os.Looper
 import androidx.leanback.app.BrowseSupportFragment
 import androidx.leanback.widget.ListRowPresenter
 import androidx.lifecycle.ViewModelProvider
-import com.github.crazyboyfeng.justTvLauncher.model.Shortcut
+import crazyboyfeng.justTvLauncher.model.Shortcut
 import java.text.DateFormat
 import java.util.*
 
