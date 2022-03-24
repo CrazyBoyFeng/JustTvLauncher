@@ -26,9 +26,9 @@ class BrowseFragment : BrowseSupportFragment() {
         val factory =
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
         viewModel = ViewModelProvider(this, factory).get(BrowseViewModel::class.java)
-        viewModel.browseContent.observe(this, {
+        viewModel.browseContent.observe(this) {
             adapter = BrowseAdapter(it!!)
-        })
+        }
         setOnItemViewClickedListener { _, item, _, _ ->
             when (item) {
                 is Shortcut -> {
