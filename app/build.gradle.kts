@@ -9,11 +9,11 @@ android {
      * compileSdk doesn't make sense,
      * just generally be consistent with targetSdk.
      */
-    compileSdk = 30
+    compileSdk = 32
     defaultConfig {
         applicationId = "crazyboyfeng.justTvLauncher"
         minSdk = 17
-        targetSdk = 30
+        targetSdk = 32
         versionCode = 20210913
         versionName = "2021.9.13"
 //        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
